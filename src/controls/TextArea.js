@@ -1,4 +1,5 @@
 var InputControl = require('./InputControl');
+var PIXI = require('pixi.js');
 
 /**
  * A text entry control that allows users to enter and edit multiple lines of

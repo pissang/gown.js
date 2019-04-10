@@ -1,3 +1,4 @@
+var PIXI = require('pixi.js');
 /**
  * Scale 9 Container.
  * e.g. useful for scalable buttons.

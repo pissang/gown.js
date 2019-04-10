@@ -1,6 +1,7 @@
 var ScaleContainer = require('../utils/ScaleContainer');
 var ThemeFont = require('./ThemeFont');
 var EventEmitter = require('eventemitter3');
+var PIXI = require('pixi.js');
 
 /**
  * Basic theming/skinning.
@@ -34,7 +35,7 @@ function Theme(global) {
     }
 
     if (global === true || global === undefined) {
-        GOWN.theme = this;
+        Theme.globalTheme = this;
     }
 
     /**
@@ -112,7 +113,7 @@ Theme.prototype.setSkin = function(comp, id, skin) {
  */
 Theme.prototype.addImage = function(jsonPath) {
     this._jsonPath = jsonPath;
-    GOWN.loader.add(jsonPath)
+    PIXI.loader.add(jsonPath)
         .once('complete', this.loadComplete.bind(this));
 };
 
@@ -208,5 +209,5 @@ Theme.prototype.getSkin = function(comp, state) {
  * Shortcut to remove the theme from the global context
  */
 Theme.removeTheme = function() {
-    GOWN.theme = undefined;
+    Theme.globalTheme = undefined;
 };

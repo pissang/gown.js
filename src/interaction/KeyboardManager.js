@@ -1,4 +1,5 @@
 var EventEmitter = require('eventemitter3');
+var PIXI = require('pixi.js');
 
 /**
  * The keyboard manager deals with key events. Any DisplayObject can be interactive

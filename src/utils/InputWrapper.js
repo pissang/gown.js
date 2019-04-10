@@ -1,3 +1,4 @@
+var InputControl = require('../controls/InputControl');
 /**
  * Wrapper for DOM Text Input.
  *
@@ -44,16 +45,16 @@ InputWrapper.createInput = function() {
 
         // add blur handler
         input.addEventListener('blur', function() {
-            if (GOWN.InputControl.currentInput) {
-                GOWN.InputControl.currentInput.onMouseUpOutside();
+            if (InputControl.currentInput) {
+                InputControl.currentInput.onMouseUpOutside();
             }
         }, false);
 
         // on key up
         input.addEventListener('keyup', function() {
-            if (GOWN.InputControl.currentInput) {
-                if (GOWN.InputControl.currentInput.hasFocus) {
-                    GOWN.InputControl.currentInput.onInputChanged();
+            if (InputControl.currentInput) {
+                if (InputControl.currentInput.hasFocus) {
+                    InputControl.currentInput.onInputChanged();
                 }
             }
         });

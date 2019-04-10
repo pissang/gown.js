@@ -1,27 +1,27 @@
 {
-  "name": "gown",
+  "name": "robe.js",
   "version": "0.1.6",
   "description": "gown.js provides basic UI components for Pixi.js. Inspired by feathers UI",
   "author": "Grey Rook GmbH",
   "main": "./src/index.js",
-  "homepage": "http://github.com/GreyRook/gown.js/",
-  "bugs": "https://github.com/GreyRook/gown.js/issues",
+  "homepage": "https://github.com/pissang/gown.js/",
+  "bugs": "https://github.com/pissang/gown.js/issues",
   "license": "Apache-2.0",
   "licenseUrl": "http://opensource.org/licenses/Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GreyRook/gown.js.git"
+    "url": "https://github.com/pissang/gown.js.git"
   },
   "scripts": {
     "build": "npm run dist",
-    "clean": "rimraf dist && mkdirp dist",
+    "clean": "./node_modules/.bin/rimraf dist && mkdirp dist",
     "coverage": "npm test -- -c src/**/*.js -s -h",
     "dist": "webpack --config webpack-development.config.js && webpack --config webpack-production.config.js",
-    "precoverage": "rimraf coverage",
-    "predist": "rimraf docs/dist/**",
+    "precoverage": "./node_modules/.bin/rimraf coverage",
+    "predist": "./node_modules/.bin/rimraf docs/dist/**",
     "preinstall": "npm i -g webpack@^2.2.1",
     "test": "floss -p test/index.js",
-    "predocs": "rimraf docs/api/**",
+    "predocs": "./node_modules/.bin/rimraf docs/api/**",
     "docs": "jsdoc -c jsdoc.conf.json -R README.md"
   },
   "files": [
@@ -34,10 +34,10 @@
   ],
   "dependencies": {
     "eventemitter3": "^2.0.0",
-    "jaguarjs-jsdoc": "^1.0.2"
+    "jaguarjs-jsdoc": "^1.0.2",
+    "pixi.js": "^4.8.7"
   },
   "devDependencies": {
-    "electron": "^1.4.15",
     "eslint": "^3.5.0",
     "floss": "^2.0.1",
     "jsdoc": "^3.4.3",
@@ -45,5 +45,8 @@
     "path": "^0.12.7",
     "rimraf": "^2.5.1",
     "webpack": "^2.2.1"
+  },
+  "peerDependencies": {
+    "pixi.js": "^4.8.7"
   }
 }

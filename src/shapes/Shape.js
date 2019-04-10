@@ -1,3 +1,4 @@
+var PIXI = require('pixi.js');
 /**
  * Shape base class
  *

@@ -1,3 +1,4 @@
+var PIXI = require('pixi.js');
 /**
  *
  *
@@ -83,7 +84,7 @@ module.exports = {
         } else {
             var updateTransformID = this.transform._worldID;
             PIXI.DisplayObject.prototype.updateTransform.call(this);
-            
+
             // Only revert scaling if something changed
             if(updateTransformID != this.transform._worldID){
                 // revert scaling

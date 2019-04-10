@@ -2,6 +2,7 @@ var Scroller = require('./Scroller');
 var ListCollection = require('../data/ListCollection');
 var LayoutGroup = require('./LayoutGroup');
 var DefaultListItemRenderer = require('./renderers/DefaultListItemRenderer');
+var VerticalLayout = require('../layout/VerticalLayout');
 
 /**
  * The basic list
@@ -205,11 +206,11 @@ List.prototype.redraw = function() {
     this.scrollerRedraw();
 
     if (!this.layout) {
-        var layout = new GOWN.layout.VerticalLayout();
+        var layout = new VerticalLayout();
         layout.padding = 0;
         layout.gap = 0;
-        layout.horizontalAlign = GOWN.layout.VerticalLayout.HORIZONTAL_ALIGN_JUSTIFY;
-        layout.verticalAlign = GOWN.layout.VerticalLayout.VERTICAL_ALIGN_TOP;
+        layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_JUSTIFY;
+        layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_TOP;
         this.layout = layout;
     }
 };
@@ -290,6 +291,7 @@ Object.defineProperty(List.prototype, 'layout', {
             // as viewPort for List)
             this.viewPort.layout = layout;
         }
+        this._layout = layout;
         // TODO: this.invalidate(INVALIDATION_FLAG_LAYOUT);
     },
     get: function() {

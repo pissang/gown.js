@@ -1,5 +1,6 @@
 var Skinable = require('../core/Skinable'),
-    InputWrapper = require('../utils/InputWrapper');
+    InputWrapper = require('../utils/InputWrapper'),
+    PIXI = require('pixi.js');
 
 /**
  * InputControl used for TextInput, TextArea and everything else that
@@ -375,17 +376,17 @@ InputControl.prototype.textWidth = function(text) {
  */
 InputControl.prototype.focus = function () {
     // is already current input
-    if (GOWN.InputControl.currentInput === this) {
+    if (InputControl.currentInput === this) {
         return;
     }
 
     // drop focus
-    if (GOWN.InputControl.currentInput) {
-        GOWN.InputControl.currentInput.blur();
+    if (InputControl.currentInput) {
+        InputControl.currentInput.blur();
     }
 
     // set focus
-    GOWN.InputControl.currentInput = this;
+    InputControl.currentInput = this;
     this.hasFocus = true;
 
     // check custom focus event
@@ -426,8 +427,8 @@ InputControl.prototype.onfocus = function () {
  * Blur the text input (remove focus)
  */
 InputControl.prototype.blur = function() {
-    if (GOWN.InputControl.currentInput === this) {
-        GOWN.InputControl.currentInput = null;
+    if (InputControl.currentInput === this) {
+        InputControl.currentInput = null;
         this.hasFocus = false;
 
         // blur hidden input

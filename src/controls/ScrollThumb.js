@@ -1,4 +1,5 @@
 var Button = require('./Button');
+var Scrollable = require('./Scrollable');
 
 /**
  * Thumb button that can be moved on the scrollbar
@@ -192,7 +193,7 @@ ScrollThumb.prototype.redraw = function() {
  * moved
  */
 ScrollThumb.prototype.move = function(x, y) {
-    if (this.scrollable.direction === GOWN.Scrollable.HORIZONTAL) {
+    if (this.scrollable.direction === Scrollable.HORIZONTAL) {
         if (isNaN(x)) {
             return false;
         }

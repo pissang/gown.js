@@ -1,4 +1,6 @@
 var Control = require('./Control');
+var Theme = require('../skin/Theme');
+var PIXI = require('pixi.js');
 
 /**
  * Control with a managed skin
@@ -22,7 +24,7 @@ function Skinable(theme) {
      */
     this.skinCache = {};
 
-    this.setTheme(theme || GOWN.theme);
+    this.setTheme(theme || Theme.globalTheme);
 
     if (this.theme === undefined) {
         throw new Error('you need to define a theme first');

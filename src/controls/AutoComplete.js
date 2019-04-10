@@ -1,5 +1,6 @@
 var InputControl = require('./InputControl'),
-    TextInput = require('./TextInput');
+    TextInput = require('./TextInput'),
+    PIXI = require('pixi.js');
 
 /**
  * The basic AutoComplete. Needed for input with suggestions

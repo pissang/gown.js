@@ -1,4 +1,5 @@
 var Control = require('../core/Control');
+var PIXI = require('pixi.js');
 
 /**
  * Entry point for your application, makes some assumptions, (e.g. that you

@@ -1,4 +1,9 @@
 var Theme = require('./Theme');
+var RectShape = require('../shapes/Rect');
+var DiamondShape = require('../shapes/Diamond');
+var LineShape = require('../shapes/Line');
+var EllipseShape = require('../shapes/Ellipse');
+var PIXI = require('pixi.js');
 
 /**
  * Load a theme from a .json file.
@@ -7,7 +12,7 @@ var Theme = require('./Theme');
  * @extends GOWN.Theme
  * @memberof GOWN
  * @constructor
- * @param jsonPath The path to the .json file {String}
+ * @param [jsonPath] The path to the .json file {String}
  * @param [global=true] Set theme as the global GOWN.theme {bool}
  */
 function ThemeParser(jsonPath, global) {
@@ -21,7 +26,9 @@ function ThemeParser(jsonPath, global) {
      */
     this.skinComponents = this.skinComponents || this.getSkinComponents();
 
-    this.addThemeData(jsonPath);
+    if (jsonPath) {
+        this.addThemeData(jsonPath);
+    }
 }
 
 ThemeParser.prototype = Object.create( Theme.prototype );
@@ -38,14 +45,12 @@ ThemeParser.DATA_LOADED = 'data_loaded';
  * @return Object
  */
 ThemeParser.prototype.getSkinComponents = function () {
-    var cmps = {};
-    if (GOWN.shapes) {
-        cmps.rect = GOWN.shapes.Rect;
-        cmps.diamond = GOWN.shapes.Diamond;
-        cmps.ellipse = GOWN.shapes.Ellipse;
-        cmps.line = GOWN.shapes.Line;
-    }
-    return cmps;
+    return {
+        rect: RectShape,
+        diamond: DiamondShape,
+        ellipse: EllipseShape,
+        line: LineShape
+    };
 };
 
 /**

@@ -1,7 +1,8 @@
 var Control = require('../core/Control'),
     Tween = require('../utils/Tween'),
     Scrollable = require('./Scrollable'),
-    ScrollBar = require('./ScrollBar');
+    ScrollBar = require('./ScrollBar'),
+    PIXI = require('pixi.js');
 // LayoutAlignment = require('../../external/pixi-layout/src/layout/LayoutAlignment');
 
 /**

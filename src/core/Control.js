@@ -1,5 +1,6 @@
 var resizeScaling = require('../utils/resizeScaling');
 var mixin = require('../utils/mixin');
+var PIXI = require('pixi.js');
 
 /**
  * Base for all UI controls.

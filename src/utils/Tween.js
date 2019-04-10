@@ -1,3 +1,4 @@
+var PIXI = require('pixi.js');
 /**
  * A wrapper around PIXI.tween OR CreateJS/TweenJS to do animations/tweening,
  * for example for a List or a Scroller.
@@ -91,26 +92,26 @@ function capitalize(string) {
 // TODO: possible alternative: create own easing data type
 // e.g. (in, out, inout and type)
 
-/**
- * Get the specific CreateJS easing function (e.g. 'linear' or 'quadIn')
- *
- * @param ease The name of the CreateJS easing function {String}
- * @return {function}
- */
-Tween.CREATEJS_EASING = function(ease) {
-    // inQutQuad to quadInOut
-    if (ease.substring(0, 5) === 'inOut') {
-        ease = ease.slice(5).toLowerCase() + 'InOut';
-    }
-    // inQuad to quadIn
-    if (ease.substring(0, 2) === 'in') {
-        ease = ease.slice(2).toLowerCase() + 'In';
-    }
-    if (ease.substring(0, 3) === 'out') {
-        ease = ease.slice(3).toLowerCase() + 'Out';
-    }
-    return createjs.Ease[ease];
-};
+// /**
+//  * Get the specific CreateJS easing function (e.g. 'linear' or 'quadIn')
+//  *
+//  * @param ease The name of the CreateJS easing function {String}
+//  * @return {function}
+//  */
+// Tween.CREATEJS_EASING = function(ease) {
+//     // inQutQuad to quadInOut
+//     if (ease.substring(0, 5) === 'inOut') {
+//         ease = ease.slice(5).toLowerCase() + 'InOut';
+//     }
+//     // inQuad to quadIn
+//     if (ease.substring(0, 2) === 'in') {
+//         ease = ease.slice(2).toLowerCase() + 'In';
+//     }
+//     if (ease.substring(0, 3) === 'out') {
+//         ease = ease.slice(3).toLowerCase() + 'Out';
+//     }
+//     return createjs.Ease[ease];
+// };
 
 /**
  * Get the specific PIXI easing function
@@ -137,13 +138,14 @@ Tween.PIXI_EASING = function(ease) {
  * @return {String} Name of the tweening-library
  */
 Tween.prototype.checkLibrary = function() {
-    if (window.PIXI && PIXI.tween) {
-        return Tween.PIXI_TWEEN;
-    } else if (window.createjs && window.createjs.Tween) {
-        return Tween.CREATEJS_TWEEN;
-    } else {
-        return Tween.NONE;
-    }
+    return Tween.PIXI_TWEEN;
+    // if (window.PIXI && PIXI.tween) {
+    //     return Tween.PIXI_TWEEN;
+    // } else if (window.createjs && window.createjs.Tween) {
+    //     return Tween.CREATEJS_TWEEN;
+    // } else {
+    //     return Tween.NONE;
+    // }
 };
 
 /**
@@ -160,11 +162,13 @@ Tween.prototype.createTween = function(target, duration, easing) {
         this._tween.time = duration;
         // Easing is a function in PIXI.tween.Easing
         this._tween.easing = Tween.PIXI_EASING(easing);
-    } else if (this.type === Tween.CREATEJS_TWEEN) {
-        createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
-        createjs.Ticker.setFPS(60);
-        this._tween = createjs.Tween.get(target, {loop: false});
-    } else {
+    }
+    // else if (this.type === Tween.CREATEJS_TWEEN) {
+    //     createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
+    //     createjs.Ticker.setFPS(60);
+    //     this._tween = createjs.Tween.get(target, {loop: false});
+    // }
+    else {
         this._tween = null;
     }
 };
@@ -179,10 +183,12 @@ Tween.prototype.to = function(data) {
         this._tween.stop();
         this._tween.to(data);
         this._tween.start();
-    } else if (this.type === Tween.CREATEJS_TWEEN && this._tween) {
-        this._tween.to(data, this.duration, Tween.CREATEJS_EASING(this.easing));
-        this._tween.play();
-    } else if (this.type === Tween.NONE) {
+    }
+    // else if (this.type === Tween.CREATEJS_TWEEN && this._tween) {
+    //     this._tween.to(data, this.duration, Tween.CREATEJS_EASING(this.easing));
+    //     this._tween.play();
+    // }
+    else if (this.type === Tween.NONE) {
         // no tween, set values directly and without wait
         // maybe we'd like to do some basic linear transitioning
         // in the future even if there is nothing set?

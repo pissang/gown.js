@@ -6,6 +6,8 @@ module.exports = {
     devtool: 'source-map',
     output: {
         path: path.join(__dirname, 'docs', 'dist'),
+        libraryTarget: 'umd',
+        library: 'gown',
         filename: 'gown.min.js'
     },
     plugins: [
@@ -16,5 +18,12 @@ module.exports = {
             warnings: false,
           },
         }),
-    ]
+    ],
+    externals: {
+        'pixi.js': {
+            commonjs: 'pixi.js',
+            amd: 'pixi.js',
+            root: 'PIXI' // indicates global variable
+        }
+    }
 };

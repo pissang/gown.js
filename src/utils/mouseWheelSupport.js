@@ -1,3 +1,4 @@
+var handlers = {};
 /**
  * XXX: replace with MouseWheelManager (see InteractionManager / KeyboardManager)
  * TODO: make it work with PIXI (this is just copied from createjs_ui / WIP)
@@ -14,10 +15,10 @@
 function mouseWheelSupport(stage, enable) {
     var canvas = stage.canvas;
     if (enable || enable === undefined) {
-        if (GOWN._mouseWheelHandler !== undefined) {
+        if (handlers._mouseWheelHandler !== undefined) {
             return;
         }
-        GOWN._mouseWheelHandler = function(event) {
+        handlers._mouseWheelHandler = function(event) {
             event = window.event || event;
             var delta = Math.max(-1, Math.min(1,
                 (event.wheelDelta || -event.detail)));
@@ -40,27 +41,27 @@ function mouseWheelSupport(stage, enable) {
         };
         if (canvas.addEventListener) {
             canvas.addEventListener('mousewheel',
-                GOWN._mouseWheelHandler, false);
+                handlers._mouseWheelHandler, false);
             canvas.addEventListener('DOMMouseScroll',
-                GOWN._mouseWheelHandler, false);
+                handlers._mouseWheelHandler, false);
         } else if (canvas.attachEvent) {
             canvas.attachEvent('onmousewheel',
-                GOWN._mouseWheelHandler);
+                handlers._mouseWheelHandler);
         }
     } else {
-        if (GOWN._mouseWheelHandler === undefined) {
+        if (handlers._mouseWheelHandler === undefined) {
             return;
         }
         if (canvas.removeEventListener) {
             canvas.removeEventListener('mousewheel',
-                GOWN._mouseWheelHandler);
+                handlers._mouseWheelHandler);
             canvas.removeEventListener('DOMMouseScroll',
-                GOWN._mouseWheelHandler);
+                handlers._mouseWheelHandler);
         } else if (canvas.detachEvent) {
             canvas.detachEvent('onmousewheel',
-                GOWN._mouseWheelHandler);
+                handlers._mouseWheelHandler);
         }
-        GOWN._mouseWheelHandler = undefined;
+        handlers._mouseWheelHandler = undefined;
     }
 }
 

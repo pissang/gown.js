@@ -1,6 +1,7 @@
 var Control = require('../core/Control');
 var ToggleButton = require('./ToggleButton');
 var List = require('./List');
+var PIXI = require('pixi.js');
 var Point = PIXI.Point;
 
 /**
