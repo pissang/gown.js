@@ -1,6 +1,6 @@
 {
   "name": "robe.js",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "gown.js provides basic UI components for Pixi.js. Inspired by feathers UI",
   "author": "Grey Rook GmbH",
   "main": "./src/index.js",
@@ -19,7 +19,6 @@
     "dist": "webpack --config webpack-development.config.js && webpack --config webpack-production.config.js",
     "precoverage": "./node_modules/.bin/rimraf coverage",
     "predist": "./node_modules/.bin/rimraf docs/dist/**",
-    "preinstall": "npm i -g webpack@^2.2.1",
     "test": "floss -p test/index.js",
     "predocs": "./node_modules/.bin/rimraf docs/api/**",
     "docs": "jsdoc -c jsdoc.conf.json -R README.md"
